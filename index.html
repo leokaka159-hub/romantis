@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Untuk Kamu ❤️</title>
 
     <style>
@@ -10,71 +11,222 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            overflow-x: hidden;
+            color: #444;
+        }
+
+        /* =========================
+           PASSWORD
+        ========================= */
+
+        #passwordPage {
+            position: fixed;
+            inset: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            overflow: hidden;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            z-index: 9999;
+            padding: 20px;
         }
 
-        .container {
+        .password-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 35px 25px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.96);
             border-radius: 25px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: boxAppear 0.8s ease;
         }
 
-        h1 {
+        @keyframes boxAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lock {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .password-box h1 {
             color: #ff4d6d;
             margin-bottom: 10px;
         }
 
-        p {
-            color: #555;
+        .password-box p {
+            color: #777;
+            line-height: 1.6;
+        }
+
+        #passwordInput {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: 2px solid #ffc2d1;
+            border-radius: 12px;
+            outline: none;
+            text-align: center;
             font-size: 18px;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 15px 30px;
+        #passwordInput:focus {
+            border-color: #ff4d6d;
+        }
+
+        .main-button {
+            margin-top: 15px;
+            padding: 14px 28px;
             border: none;
             border-radius: 50px;
             background: #ff4d6d;
             color: white;
-            font-size: 18px;
+            font-size: 17px;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.25);
         }
 
-        button:hover {
-            transform: scale(1.1);
+        .main-button:hover {
+            transform: scale(1.06);
             background: #ff2e55;
         }
 
-        #message {
+        .main-button:active {
+            transform: scale(0.96);
+        }
+
+        #wrongPassword {
+            color: #ff4d6d;
+            margin-top: 15px;
             display: none;
-            margin-top: 25px;
+        }
+
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        #mainPage {
+            display: none;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 35px 25px;
+            margin-bottom: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            animation: cardAppear 0.8s ease;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart-big {
+            font-size: 65px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        h1 {
             color: #ff4d6d;
-            font-size: 22px;
+        }
+
+        h2 {
+            color: #ff4d6d;
+        }
+
+        p {
+            line-height: 1.8;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* =========================
+           MUSIC
+        ========================= */
+
+        .music-player {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .music-title {
+            color: #ff4d6d;
+            font-size: 18px;
             font-weight: bold;
-            animation: muncul 1s ease;
         }
 
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 25px;
-            animation: jatuh 4s linear forwards;
+        .music-status {
+            color: #888;
+            font-size: 14px;
         }
 
-        @keyframes muncul {
+
+        /* =========================
+           PESAN
+        ========================= */
+
+        .message {
+            font-size: 19px;
+            line-height: 1.9;
+            color: #555;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -86,69 +238,1109 @@
             }
         }
 
-        @keyframes jatuh {
+
+        /* =========================
+           COUNTER
+        ========================= */
+
+        .counter {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: #fff0f3;
+            padding: 15px 5px;
+            border-radius: 15px;
+        }
+
+        .time-number {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4d6d;
+        }
+
+        .time-label {
+            font-size: 12px;
+            color: #777;
+        }
+
+
+        /* =========================
+           PERTANYAAN
+        ========================= */
+
+        .question-buttons {
+            position: relative;
+            min-height: 110px;
+            margin-top: 20px;
+        }
+
+        #noButton {
+            position: absolute;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 50px;
+            background: #aaa;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+
+        /* =========================
+           ENDING
+        ========================= */
+
+        #ending {
+            display: none;
+        }
+
+        .final-message {
+            font-size: 23px;
+            color: #ff4d6d;
+            font-weight: bold;
+            line-height: 1.8;
+        }
+
+        .date {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #888;
+        }
+
+
+        /* =========================
+           HEART ANIMATION
+        ========================= */
+
+        .heart {
+            position: fixed;
+            top: -40px;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 10000;
+        }
+
+        @keyframes fall {
             0% {
                 transform: translateY(-50px) rotate(0deg);
                 opacity: 1;
             }
 
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(110vh) rotate(360deg);
                 opacity: 0;
             }
         }
-    </style>
-</head>
 
-<body>
 
-    <div class="container">
-        <h1>Hai, Sayang ❤️</h1>
+        /* =========================
+           MOBILE
+        ========================= */
 
-        <p>
-            Aku punya sesuatu untuk kamu...
-        </p>
+        @media (max-width: 500px) {
 
-        <button onclick="kejutan()">
-            Klik Aku ❤️
-        </button>
+            .card {
+                padding: 28px 20px;
+            }
 
-        <div id="message">
-            Kamu adalah orang yang sangat berarti buat aku. ❤️
-            <br><br>
-            Aku sayang kamu. 🥰
-        </div>
-    </div>
+            .heart-big {
+                font-size: 55px;
+            }
 
-    <script>
-        function kejutan() {
-            document.getElementById("message").style.display = "block";
+            h1 {
+                font-size: 27px;
+            }
 
-            // Membuat hati berjatuhan
-            for (let i = 0; i < 30; i++) {
-                buatHati();
+            .counter {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .message {
+                font-size: 17px;
+            }
+
+            .final-message {
+                font-size: 21px;
             }
         }
 
-        function buatHati() {
-            const heart = document.createElement("div");
+    </style>
+</head>
 
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
 
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration =
-                (Math.random() * 2 + 3) + "s";
+<body>
 
-            heart.style.fontSize =
-                (Math.random() * 20 + 15) + "px";
 
-            document.body.appendChild(heart);
+    <!-- =========================
+         PASSWORD PAGE
+    ========================= -->
+
+    <div id="passwordPage">
+
+        <div class="password-box">
+
+            <div class="lock">
+                🔐
+            </div>
+
+            <h1>Halaman Rahasia ❤️</h1>
+
+            <p>
+                Ada sesuatu yang aku buat khusus untuk kamu.
+                <br>
+                Tapi sebelum masuk...
+                <br><br>
+                kamu harus tahu satu tanggal spesial kita. 🥺
+            </p>
+
+            <input
+                type="password"
+                id="passwordInput"
+                placeholder="Masukkan password"
+                inputmode="numeric"
+            >
+
+            <button
+                class="main-button"
+                onclick="checkPassword()"
+            >
+                Masuk ❤️
+            </button>
+
+            <p id="wrongPassword">
+                Hmm... passwordnya salah 🥺
+                <br>
+                Coba ingat lagi tanggal spesial kita ❤️
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN PAGE
+    ========================= -->
+
+    <div id="mainPage">
+
+        <div class="container">
+
+
+            <!-- PEMBUKA -->
+
+            <div class="card">
+
+                <div class="heart-big">
+                    ❤️
+                </div>
+
+                <h1>Hai, Sayang</h1>
+
+                <p>
+                    Aku membuat sesuatu khusus untuk kamu.
+                </p>
+
+                <p>
+                    Mungkin ini sederhana...
+                    <br>
+                    tapi aku membuatnya dengan sepenuh hati.
+                </p>
+
+                <p>
+                    Jadi jangan buru-buru pergi ya. 🥺
+                </p>
+
+                <button
+                    class="main-button"
+                    onclick="startStory()"
+                >
+                    Klik Aku ❤️
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 MUSIC PLAYER
+            ========================= -->
+
+            <div class="music-player">
+
+                <div class="music-title">
+                    🎵 Lagu untuk kamu ❤️
+                </div>
+
+                <p class="music-status" id="musicStatus">
+                    Tekan "Klik Aku ❤️" untuk memulai musik.
+                </p>
+
+                <audio id="music" loop>
+
+                    <source
+                        src="lagu.mp3"
+                        type="audio/mpeg"
+                    >
+
+                    Browser kamu tidak mendukung audio.
+
+                </audio>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PESAN 1
+            ========================= -->
+
+            <div
+                class="card hidden"
+                id="message1"
+            >
+
+                <h2>
+                    Terima Kasih ❤️
+                </h2>
+
+                <div class="message">
+
+                    Terima kasih karena sudah hadir
+                    di dalam hidupku.
+
+                    <br><br>
+
+                    Terima kasih karena sudah menjadi
+                    seseorang yang membuat hari-hariku
+                    terasa lebih berarti.
+
+                    <br><br>
+
+                    Sejak ada kamu,
+                    ada banyak hal kecil yang terasa
+                    jauh lebih indah.
+
+                </div>
+
+                <button
+                    class="main-button"
+                    onclick="showMessage(2)"
+                >
+                    Lanjut ❤️
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PESAN 2
+            ========================= -->
+
+            <div
+                class="card hidden"
+                id="message2"
+            >
+
+                <h2>
+                    Aku Mungkin Tidak Sempurna
+                </h2>
+
+                <div class="message">
+
+                    Aku tahu aku bukan pasangan
+                    yang sempurna.
+
+                    <br><br>
+
+                    Kadang aku bisa salah,
+                    kadang aku bisa membuatmu kesal,
+                    dan mungkin ada saatnya aku
+                    belum bisa menjadi seperti yang
+                    kamu inginkan.
+
+                    <br><br>
+
+                    Tapi satu hal yang pasti...
+
+                </div>
+
+                <button
+                    class="main-button"
+                    onclick="showMessage(3)"
+                >
+                    Apa? 🥺
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PESAN 3
+            ========================= -->
+
+            <div
+                class="card hidden"
+                id="message3"
+            >
+
+                <h2>
+                    Satu Hal yang Pasti ❤️
+                </h2>
+
+                <div class="message">
+
+                    Aku akan selalu berusaha
+                    menjadi lebih baik untukmu.
+
+                    <br><br>
+
+                    Aku ingin terus belajar,
+                    terus tumbuh,
+                    dan terus membuat lebih banyak
+                    kenangan bersama kamu.
+
+                    <br><br>
+
+                    Karena aku ingin cerita kita
+                    punya banyak halaman lagi.
+
+                    <br><br>
+
+                    Dan aku berharap,
+                    kamu masih mau berada
+                    di sampingku untuk halaman-halaman
+                    berikutnya. ❤️
+
+                </div>
+
+                <button
+                    class="main-button"
+                    onclick="showCounter()"
+                >
+                    Lanjut 💕
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 COUNTER
+            ========================= -->
+
+            <div
+                class="card hidden"
+                id="counterCard"
+            >
+
+                <h2>
+                    Sejak Hari Itu ❤️
+                </h2>
+
+                <p>
+                    Semuanya dimulai pada...
+                </p>
+
+                <h2>
+                    16 Juni 2026
+                </h2>
+
+                <p>
+                    Dan sampai sekarang,
+                    waktu terus berjalan bersama kita.
+                </p>
+
+                <div class="counter">
+
+                    <div class="time-box">
+
+                        <span
+                            class="time-number"
+                            id="days"
+                        >
+                            0
+                        </span>
+
+                        <span class="time-label">
+                            Hari
+                        </span>
+
+                    </div>
+
+
+                    <div class="time-box">
+
+                        <span
+                            class="time-number"
+                            id="hours"
+                        >
+                            0
+                        </span>
+
+                        <span class="time-label">
+                            Jam
+                        </span>
+
+                    </div>
+
+
+                    <div class="time-box">
+
+                        <span
+                            class="time-number"
+                            id="minutes"
+                        >
+                            0
+                        </span>
+
+                        <span class="time-label">
+                            Menit
+                        </span>
+
+                    </div>
+
+
+                    <div class="time-box">
+
+                        <span
+                            class="time-number"
+                            id="seconds"
+                        >
+                            0
+                        </span>
+
+                        <span class="time-label">
+                            Detik
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="main-button"
+                    onclick="showQuestion()"
+                >
+                    Ada satu pertanyaan... ❤️
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 QUESTION
+            ========================= -->
+
+            <div
+                class="card hidden"
+                id="questionCard"
+            >
+
+                <h2>
+                    Kamu masih sayang aku? 🥺
+                </h2>
+
+                <p>
+                    Jawab dengan jujur ya...
+                </p>
+
+                <div class="question-buttons">
+
+                    <button
+                        class="main-button"
+                        onclick="showEnding()"
+                    >
+                        Iya ❤️
+                    </button>
+
+                    <button id="noButton">
+                        Tidak 😭
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 ENDING
+            ========================= -->
+
+            <div
+                class="card"
+                id="ending"
+            >
+
+                <div class="heart-big">
+                    💖
+                </div>
+
+                <h2>
+                    Aku juga sayang kamu.
+                </h2>
+
+                <div class="final-message">
+
+                    Terima kasih sudah memilih
+                    untuk tetap bersamaku. ❤️
+
+                    <br><br>
+
+                    Semoga kita bisa terus bersama,
+                    melewati banyak hal,
+                    tertawa bersama,
+                    saling mendukung,
+                    dan membuat banyak kenangan baru.
+
+                    <br><br>
+
+                    Aku tidak tahu akan seperti apa
+                    perjalanan kita ke depannya.
+
+                    <br><br>
+
+                    Tapi aku tahu satu hal...
+
+                    <br><br>
+
+                    Aku ingin menjalaninya
+                    bersama kamu. ❤️
+
+                    <br><br>
+
+                    Aku sayang kamu.
+                    💖
+
+                </div>
+
+                <div class="date">
+
+                    16 Juni 2026
+                    <br>
+                    Awal dari cerita kita. 💕
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           PASSWORD
+        ========================= */
+
+        const correctPassword = "16062026";
+
+
+        function checkPassword() {
+
+            const input =
+                document.getElementById(
+                    "passwordInput"
+                ).value;
+
+            const wrong =
+                document.getElementById(
+                    "wrongPassword"
+                );
+
+
+            if (input === correctPassword) {
+
+                document.getElementById(
+                    "passwordPage"
+                ).style.display = "none";
+
+
+                document.getElementById(
+                    "mainPage"
+                ).style.display = "block";
+
+
+                createHearts(15);
+
+            } else {
+
+                wrong.style.display = "block";
+
+                document.getElementById(
+                    "passwordInput"
+                ).value = "";
+
+            }
+
+        }
+
+
+
+        /* =========================
+           ENTER PASSWORD
+        ========================= */
+
+        document.getElementById(
+            "passwordInput"
+        ).addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    checkPassword();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           MUSIC
+        ========================= */
+
+        const music =
+            document.getElementById("music");
+
+        const musicStatus =
+            document.getElementById("musicStatus");
+
+
+        function startMusic() {
+
+            music.play()
+                .then(() => {
+
+                    musicStatus.innerHTML =
+                        "🎵 Musik sedang diputar ❤️";
+
+                })
+                .catch(() => {
+
+                    musicStatus.innerHTML =
+                        "🎵 Tekan tombol lagi untuk memutar musik.";
+
+                });
+
+        }
+
+
+
+        /* =========================
+           START STORY
+        ========================= */
+
+        function startStory() {
+
+            startMusic();
+
+
+            document.getElementById(
+                "message1"
+            ).classList.remove("hidden");
+
+
+            createHearts(30);
+
 
             setTimeout(() => {
-                heart.remove();
-            }, 5000);
+
+                document.getElementById(
+                    "message1"
+                ).scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 300);
+
         }
+
+
+
+        /* =========================
+           SHOW MESSAGE
+        ========================= */
+
+        function showMessage(number) {
+
+            const message =
+                document.getElementById(
+                    "message" + number
+                );
+
+
+            message.classList.remove(
+                "hidden"
+            );
+
+
+            createHearts(20);
+
+
+            setTimeout(() => {
+
+                message.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 200);
+
+        }
+
+
+
+        /* =========================
+           COUNTER
+        ========================= */
+
+        const startDate =
+            new Date(
+                "2026-06-16T00:00:00"
+            );
+
+
+        function updateCounter() {
+
+            const now = new Date();
+
+
+            const difference =
+                now - startDate;
+
+
+            if (difference < 0) {
+                return;
+            }
+
+
+            const seconds =
+                Math.floor(
+                    difference / 1000
+                );
+
+
+            const minutes =
+                Math.floor(
+                    seconds / 60
+                );
+
+
+            const hours =
+                Math.floor(
+                    minutes / 60
+                );
+
+
+            const days =
+                Math.floor(
+                    hours / 24
+                );
+
+
+            document.getElementById(
+                "days"
+            ).textContent = days;
+
+
+            document.getElementById(
+                "hours"
+            ).textContent =
+                hours % 24;
+
+
+            document.getElementById(
+                "minutes"
+            ).textContent =
+                minutes % 60;
+
+
+            document.getElementById(
+                "seconds"
+            ).textContent =
+                seconds % 60;
+
+        }
+
+
+        setInterval(
+            updateCounter,
+            1000
+        );
+
+
+        updateCounter();
+
+
+
+        /* =========================
+           COUNTER
+        ========================= */
+
+        function showCounter() {
+
+            const counter =
+                document.getElementById(
+                    "counterCard"
+                );
+
+
+            counter.classList.remove(
+                "hidden"
+            );
+
+
+            createHearts(25);
+
+
+            setTimeout(() => {
+
+                counter.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 200);
+
+        }
+
+
+
+        /* =========================
+           QUESTION
+        ========================= */
+
+        function showQuestion() {
+
+            const question =
+                document.getElementById(
+                    "questionCard"
+                );
+
+
+            question.classList.remove(
+                "hidden"
+            );
+
+
+            setTimeout(() => {
+
+                question.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 200);
+
+        }
+
+
+
+        /* =========================
+           NO BUTTON
+        ========================= */
+
+        const noButton =
+            document.getElementById(
+                "noButton"
+            );
+
+
+        noButton.addEventListener(
+            "mouseover",
+            moveNoButton
+        );
+
+
+        noButton.addEventListener(
+            "touchstart",
+            moveNoButton
+        );
+
+
+        noButton.addEventListener(
+            "click",
+            moveNoButton
+        );
+
+
+        function moveNoButton() {
+
+            const maxX =
+                window.innerWidth -
+                noButton.offsetWidth -
+                20;
+
+
+            const maxY =
+                window.innerHeight -
+                noButton.offsetHeight -
+                20;
+
+
+            const randomX =
+                Math.max(
+                    10,
+                    Math.random() * maxX
+                );
+
+
+            const randomY =
+                Math.max(
+                    10,
+                    Math.random() * maxY
+                );
+
+
+            noButton.style.position =
+                "fixed";
+
+
+            noButton.style.left =
+                randomX + "px";
+
+
+            noButton.style.top =
+                randomY + "px";
+
+        }
+
+
+
+        /* =========================
+           ENDING
+        ========================= */
+
+        function showEnding() {
+
+            const ending =
+                document.getElementById(
+                    "ending"
+                );
+
+
+            ending.style.display =
+                "block";
+
+
+            createHearts(100);
+
+
+            setTimeout(() => {
+
+                ending.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 300);
+
+        }
+
+
+
+        /* =========================
+           HEARTS
+        ========================= */
+
+        function createHearts(amount) {
+
+            const heartTypes = [
+
+                "❤️",
+                "💕",
+                "💖",
+                "💗",
+                "💓",
+                "💞",
+                "💘"
+
+            ];
+
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                setTimeout(() => {
+
+                    const heart =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    heart.className =
+                        "heart";
+
+
+                    heart.innerHTML =
+                        heartTypes[
+                            Math.floor(
+                                Math.random() *
+                                heartTypes.length
+                            )
+                        ];
+
+
+                    heart.style.left =
+                        Math.random() *
+                        100 +
+                        "vw";
+
+
+                    heart.style.fontSize =
+                        Math.random() *
+                        20 +
+                        15 +
+                        "px";
+
+
+                    heart.style.animationDuration =
+                        Math.random() *
+                        3 +
+                        3 +
+                        "s";
+
+
+                    document.body.appendChild(
+                        heart
+                    );
+
+
+                    setTimeout(() => {
+
+                        heart.remove();
+
+                    }, 7000);
+
+                }, i * 50);
+
+            }
+
+        }
+
     </script>
 
 </body>
